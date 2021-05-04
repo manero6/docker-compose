@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+homeassistant:
+  image: homeassistant/raspberrypi4-homeassistant
+  container_name: homeassistant
+  network_mode: host
+  volumes:
+    - '~/docker/home-assistant/homeassistant-raspberrypi4-homeassistant:/config'
+    - /etc/localtime:/etc/localtime:ro
+  restart: unless-stopped

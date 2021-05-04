@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  organizr:
+    image: organizr/organizr
+    container_name: organizr
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:8121:80"
+#      - 443:443
+    environment:
+      TZ: 'Europe/Berlin'
+    volumes:
+      - '~/docker/organizr/organizr-organizr/config:/config'
+    restart: unless-stopped

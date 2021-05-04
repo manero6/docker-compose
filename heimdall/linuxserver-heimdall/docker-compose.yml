@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:8120:80"
+#      - 443:443
+    environment:
+      TZ: 'Europe/Berlin'
+    volumes:
+      - '~/docker/heimdall/linuxserver-heimdall/config:/config'
+    restart: unless-stopped

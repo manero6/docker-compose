@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:53:53/tcp"
+      - "127.0.0.1:53:53/udp"
+#      - "67:67/udp"
+      - "127.0.0.1:8100:80/tcp"
+    environment:
+      TZ: 'Europe/Berlin'
+      WEBPASSWORD: 'pihole'
+    volumes:
+      - '~/docker/pihole/pihole-pihole/etc-pihole:/etc/pihole'
+      - '~/docker/pihole/pihole-pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
+#    cap_add:
+#      - NET_ADMIN
+    restart: unless-stopped
