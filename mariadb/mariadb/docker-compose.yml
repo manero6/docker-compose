@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  mariadb:
+    image: mariadb
+    hostname: mariadb
+    container_name: mariadb
+    network_mode: bridge
+    restart: unless-stopped
+    ports:
+      - "172.17.0.1:3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+    volumes:
+      - '~/docker/mariadb/mariadb/data:/var/lib/mysql'

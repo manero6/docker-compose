@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  web:
+    image: gitea/gitea
+    container_name: gitea
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:8126:3000"
+#      - "22:22"
+    volumes:
+      - "~/docker/gitea/gitea-gitea/data:/data"
+#    depends_on:
+#      - db
+    restart: unless-stopped
+
+#  db:
+#    image: mariadb
+#    container_name: gitea-mariadb
+#    network_mode: bridge
+#    environment:
+#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_DATABASE: gitea
+#      MYSQL_USER: gitea
+#      MYSQL_PASSWORD: password
+#    volumes:
+#      - "~/docker/gitea/gitea-gitea/mariadb:/data"
+#    restart: unless-stopped

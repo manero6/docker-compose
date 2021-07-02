@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  rancher:
+    image: rancher/rancher
+    hostname: rancher
+    container_name: rancher
+    restart: unless-stopped
+    network_mode: bridge
+    privileged: true
+    ports:
+      - "${DOCKER_GW}:${RANCHER}:80"
+      - "${DOCKER_GW}:${RANCHER_S}:443"
+#    environment:
+#    volumes:
+#      - '~/docker/rancher/:/'

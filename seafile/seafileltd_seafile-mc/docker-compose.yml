@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  mariadb:
+    image: mariadb
+    container_name: seafile-mariadb
+    hostname: seafile-mariadb
+    network_mode: bridge
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_LOG_CONSOLE=true
+    volumes:
+      - '~/docker/seafile/seafileltd_seafile-mc/mariadb:/var/lib/mysql'
+
+  memcached:
+    image: memcached
+    container_name: seafile-memcached
+    network_mode: bridge
+    restart: unless-stopped
+    entrypoint: memcached -m 256
+          
+  seafile:
+    image: seafileltd/seafile-mc
+    container_name: seafile
+    network_mode: bridge
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8129:80"
+#     - "443:443"
+    volumes:
+      - '~/docker/seafile/seafileltd_seafile-mc/seafile:/shared'
+    environment:
+      - DB_HOST=seafile-mariadb
+      - DB_ROOT_PASSWD=password
+      - TIME_ZONE=Etc/UTC
+      - SEAFILE_ADMIN_EMAIL=me@example.com
+      - SEAFILE_ADMIN_PASSWORD=password
+      - SEAFILE_SERVER_LETSENCRYPT=false
+      - SEAFILE_SERVER_HOSTNAME=docs.seafile.com
+    depends_on:
+      - mariadb
+      - memcached

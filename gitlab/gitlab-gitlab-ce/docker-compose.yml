@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  github:
+    image: gitlab/gitlab-ce
+    container_name: gitlab
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:8125:80"
+#      - '443:443'
+#      - '22:22'
+    volumes:
+      - "~/docker/gitlab/gitlab-gitlab-ce/config:/etc/gitlab"
+      - "~/docker/gitlab/gitlab-gitlab-ce/logs:/var/log/gitlab"
+      - "~/docker/gitlab/gitlab-gitlab-ce/data:/var/opt/gitlab"
+    restart: unless-stopped

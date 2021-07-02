@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  redmine:
+    image: redmine
+    hostname: redmine
+    container_name: redmine
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "${DOCKER_GW}:${REDMINE}:3000"
+    environment:
+      REDMINE_DB_MYSQL: $DOCKER_GW
+      REDMINE_DB_PASSWORD: $PASS
+      REDMINE_SECRET_KEY_BASE: $PASS

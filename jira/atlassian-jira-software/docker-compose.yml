@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  jira:
+    image: atlassian/jira-software
+    hostname: jira
+    container_name: jira
+    network_mode: bridge
+    restart: unless-stopped
+    ports:
+      - "${DOCKER_GW}:${JIRA}:8080"
+    volumes:
+      - '~/docker/jira/atlassian-jira-software/data:/var/atlassian/application-data/jira'

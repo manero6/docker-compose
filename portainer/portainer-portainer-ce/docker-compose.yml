@@ -2,17 +2,13 @@ version: "3"
 
 services:
   portainer:
-    container_name: portainer
     image: portainer/portainer-ce
+    container_name: portainer
     network_mode: bridge
+    restart: unless-stopped
     ports:
 #      - "8000:8000"
-      - "8111:9000"
+      - "${DOCKER_GW}:${PORTAINER}:9000"
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - 'portainer_data:/data'
-    restart: unless-stopped
-
-volumes:
-  portainer_data:
-    external: true
+      - '~/docker/portainer/portainer-portainer-ce/data:/data'
