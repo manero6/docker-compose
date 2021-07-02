@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  CHANGEME:
+    image: CHANGEME
+    hostname: CHANGEME
+    container_name: CHANGEME
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "${DOCKER_GW}:${}:"
+#    environment:
+#    volumes:
+#      - '~/docker/CHANGEME/:/'
