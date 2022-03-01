@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  adguard:
+    image: adguard/adguardhome
+    hostname: adguard
+    container_name: adguard
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "53:53"
+      - "8080:80"
+#    environment:
+    volumes:
+      - '~/docker/adguard/adguard-adguardhome/work:opt/adguardhome/work'
+      - '~/docker/adguard/adguard-adguardhome/conf:opt/adguardhome/conf'
